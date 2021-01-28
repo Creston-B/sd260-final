@@ -1,5 +1,6 @@
 // image source, title, rating, plot, checked toggled bool
 
+import { checkPropTypes } from 'prop-types';
 import React from 'react';
 import Search from './Search';
 
@@ -22,7 +23,11 @@ return(
               </ul>
             </nav>
           </div>
-          {/* <Search/> */}
+          <Search 
+          query={props.query}
+          searchFilter={props.searchFilter}
+          searchResults={props.searchResults}
+          />
         </header>
   );
 }

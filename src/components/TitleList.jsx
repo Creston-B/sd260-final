@@ -1,8 +1,9 @@
 import React from 'react';
-import Movie from './Movie.jsx'
+import Movie from './Movie.jsx';
 
-class TitleList extends React.Component {  
-  render() {
+class TitleList extends React.Component {
+
+  render = () => {
     return (
       <div className="titleList">
         <div className="title">
