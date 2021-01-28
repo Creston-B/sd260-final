@@ -6,12 +6,13 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 class App extends Component {
 
+
   state = {
     query: ``,
     list: [],
     genres: [],
     searchResults: ``,
-    searchBlurb: ``
+    moviesFound: ``
   };
 
   componentDidMount = () => {
@@ -42,17 +43,23 @@ class App extends Component {
     }))
   }
 
+  movieCount = () => {
+    
+    return(``)
+  }
+
   searchFilter = (e) => {
     e.preventDefault()
-    if (e.target.value === ``) {
-      this.setState({ query: e.target.value, searchBlurb: `Found ${e.searchResult} movies with the query ${e.target.value}` })
+    if (e.target.value !== ``) {
+      this.setState({ query: e.target.value, searchResults: `Found ${this.movieCount()} movies with the query ${e.target.value}` })
     } else {
-      this.setState({ query: e.target.value, searchBlurb: `Found ${searchResult} movies with the query ${e.target.value}` })
+      this.setState({ query: ``, searchResults: `` })
     }
+
   }
 
   listGenre = (props) => {
-    return (
+    let movieList =
       this.state.genres.map(genre => {
         return (
           <React.Fragment key={genre.id}>
@@ -60,26 +67,25 @@ class App extends Component {
               genre={genre.name}
               list={this.state.list.filter(mov => mov.genre_ids.includes(genre.id) && (mov.title.toLowerCase().includes(this.state.query.toLowerCase()) || mov.overview.toLowerCase().includes(this.state.query.toLowerCase())))}
               handleListing={this.handleListing}
+              movieCount={this.movieCount}
               {...props}
             />
           </React.Fragment>);
       }).filter(frag => frag.props.children.props.list.length > 0)
-    )
+    return (movieList)
   }
 
   listGenreFavs = (props) => {
-    return (
+    let movieList =
       <React.Fragment>
         <TitleList
           list={this.state.list.filter(mov => mov.my_list && (mov.title.toLowerCase().includes(this.state.query.toLowerCase()) || mov.overview.toLowerCase().includes(this.state.query.toLowerCase())))}
           handleListing={this.handleListing}
+          movieCount={this.movieCount}
           {...props}
         />
-      </React.Fragment>)
-  }
-
-  listOnlyValid = (list) => {
-    return (list.filter(frag => frag.props.children.props.list.length > 0))
+      </React.Fragment>
+    return (movieList)
   }
 
   render = () => {
@@ -88,7 +94,7 @@ class App extends Component {
         <Header
           query={this.state.query}
           searchFilter={this.searchFilter}
-          searchResults={this.status.searchResults}
+          searchResults={this.state.searchResults}
         />
         <Switch>
           <Route
