@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 class Movie extends React.Component {
   render = () => {
     return (
-      <div className="movie" key={this.props.id}>
+      <div className="movie" key={this.props.id} data-id={this.props.id}>
         <img src={this.props.poster_path} alt={this.props.title} />
         <div className="overlay">
           <div className="title">{this.props.title}</div>
@@ -24,10 +24,3 @@ class Movie extends React.Component {
 }
 
 export default Movie;
-
-// "backdrop_path": "https://image.tmdb.org/t/p/w500/mZSAu5acXueGC4Z3S5iLSWx8AEp.jpg",
-//       "genre_ids": [
-//         28,
-//         12,
-//         878
-//       ],

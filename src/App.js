@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import * as MovieAPI from './lib/MovieAPI';
 import Header from './components/Header.jsx';
 import TitleList from './components/TitleList';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, BrowserRouter, Switch, useLocation } from 'react-router-dom';
+import ListView from './components/ListView';
 
 class App extends Component {
 
@@ -11,8 +12,7 @@ class App extends Component {
     query: ``,
     list: [],
     genres: [],
-    searchResults: ``,
-    moviesFound: ``
+    searchResults: ``
   };
 
   componentDidMount = () => {
@@ -43,11 +43,6 @@ class App extends Component {
     }))
   }
 
-  movieCount = () => {
-    
-    return(``)
-  }
-
   searchFilter = (e) => {
     e.preventDefault()
     if (e.target.value !== ``) {
@@ -67,7 +62,6 @@ class App extends Component {
               genre={genre.name}
               list={this.state.list.filter(mov => mov.genre_ids.includes(genre.id) && (mov.title.toLowerCase().includes(this.state.query.toLowerCase()) || mov.overview.toLowerCase().includes(this.state.query.toLowerCase())))}
               handleListing={this.handleListing}
-              movieCount={this.movieCount}
               {...props}
             />
           </React.Fragment>);
@@ -81,7 +75,6 @@ class App extends Component {
         <TitleList
           list={this.state.list.filter(mov => mov.my_list && (mov.title.toLowerCase().includes(this.state.query.toLowerCase()) || mov.overview.toLowerCase().includes(this.state.query.toLowerCase())))}
           handleListing={this.handleListing}
-          movieCount={this.movieCount}
           {...props}
         />
       </React.Fragment>

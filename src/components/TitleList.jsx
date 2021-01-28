@@ -16,4 +16,5 @@ class TitleList extends React.Component {
     )
   }
 }
+
 export default TitleList;

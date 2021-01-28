@@ -1,8 +1,6 @@
-// image source, title, rating, plot, checked toggled bool
-
-import { checkPropTypes } from 'prop-types';
 import React from 'react';
 import Search from './Search';
+import ListView from './ListView'
 
 export default function Header(props) {
 return(
@@ -23,6 +21,7 @@ return(
               </ul>
             </nav>
           </div>
+              <ListView />
           <Search 
           query={props.query}
           searchFilter={props.searchFilter}
