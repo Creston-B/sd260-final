@@ -2,11 +2,9 @@ import React from 'react';
 
 export default function ListView(props) {
   return (
-    <div className="listToggle">
-      <div>
-        <button>pressHere</button>
-      </div>
-    </div>
+    <li className="listToggle lower">
+      <a href="/mylist" onClick={() => props.displayList}>View as List</a>
+    </li>
   );
 }
 

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import * as MovieAPI from './lib/MovieAPI';
 import Header from './components/Header.jsx';
 import TitleList from './components/TitleList';
-import { Route, BrowserRouter, Switch, useLocation } from 'react-router-dom';
-import ListView from './components/ListView';
+import { Route, BrowserRouter, Switch} from 'react-router-dom';
+import ListMovie from './components/ListMovie.jsx'
 
 class App extends Component {
 
@@ -12,7 +12,8 @@ class App extends Component {
     query: ``,
     list: [],
     genres: [],
-    searchResults: ``
+    searchResults: ``,
+    extraList: ``
   };
 
   componentDidMount = () => {
@@ -22,6 +23,23 @@ class App extends Component {
       .then(data => data.sort((a, b) => a.name > b.name ? 1 : -1))
       .then(data => this.setState({ genres: data }))
   }
+
+  // displayList = () => {
+  //   this.setState((prevState) => ({ extraList: !prevState.extraList }))
+  // }
+
+//   listFilms = () => {
+//     return (this.state.list.map(movie => {
+//       if (movie.my_list) {
+//         return(<ListMovie
+//           title={movie.title}
+//           image={movie.background_image}
+//           toggled={movie.my_list}
+//           genres={movie.genre_ids}
+//         />)
+//       }
+//     }))
+// }
 
   handleListing = (movie) => {
     if (movie.my_list) {
@@ -46,7 +64,7 @@ class App extends Component {
   searchFilter = (e) => {
     e.preventDefault()
     if (e.target.value !== ``) {
-      this.setState({ query: e.target.value, searchResults: `Found ${this.movieCount()} movies with the query ${e.target.value}` })
+      this.setState({ query: e.target.value, searchResults: `Found ${`N/A`} movies with the query ${e.target.value}` })
     } else {
       this.setState({ query: ``, searchResults: `` })
     }

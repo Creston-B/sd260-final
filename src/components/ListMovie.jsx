@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Movie extends React.Component {
+class ListMovie extends React.Component {
   render = () => {
     return (
-      <div className="movie" key={this.props.id} data-id={this.props.id}>
-        <img src={this.props.poster_path} alt={this.props.title} />
+      <div className="list-movie" key={this.props.id} data-id={this.props.id}>
+        <img src={this.props.background_path} alt={this.props.title} />
         <div className="overlay">
           <div className="title">{this.props.title}</div>
           <div className="rating">{this.props.vote_average}</div>
@@ -23,4 +23,4 @@ class Movie extends React.Component {
   }
 }
 
-export default Movie;
+export default ListMovie;
